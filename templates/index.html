@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8">
- 
+
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,94 +14,113 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/progressbar.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="{{url_for('static', filename='main.js')}}"></script>
-
+  <script src="{{url_for('static', filename='particle-cfg.json')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+    particlesJS.load('particles-js', "{{url_for('static', filename='particle-cfg.json')}}", function () {
+      console.log('callback - particles.js config loaded');
+    });
+  </script>
 </head>
 
 <body>
-  <section id='topi' class="hero has-background-white-bis is-medium">
+
+  <section class="hero is-medium">
+    <div id="particles-js" class="pzload"></div>
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title">
-          Rate my image (Popularity index)
+        <h1 class="title"><mark class="has-background-light">
+            Rate my image (Popularity index)
+          </mark>
         </h1>
         <h2 class="subtitle">
-          Upload your image and I will rate it for you!
+          <mark class="has-background-light">
+            Upload your image and I will rate it for you!
+          </mark>
         </h2>
       </div>
       <section class="section">
-        
-    <div class="columns is-flex is-centered">
-      <img class="image" src= "/static/img/bellli.PNG" >
-    </div>
-  <div class="field is-grouped is-grouped-centered">
-        <div class="file">
-          <form class="file" id="fileinfo" method="post" enctype="multipart/form-data" onsubmit="return submitForm();">
-          <label class="file-label">
-            <input class="file-input" type="file" name="file">
 
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="fas fa-upload"></i>
-              </span>
-              <span class="file-label">
-                Choose a file…
-              </span>
-            </span>
-          </label>
-          <div class="control">
-            <button type="submit" value="Submit" class="button is-primary">Submit</button>
-          </div>
-
-        
+        <div class="columns is-flex is-centered">
+          <img class="image" src="/static/img/bellli.PNG">
         </div>
-      </form>
+        <div class="field is-grouped is-grouped-centered">
+          <div class="file">
+            <form class="file" id="fileinfo" method="post" enctype="multipart/form-data"
+              onsubmit="return submitForm();">
+              <label class="file-label">
+                <input class="file-input" type="file" name="file">
 
-    </div>
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+              </label>
+              <div class="control">
+                <button type="submit" value="Submit" class="button is-primary">Submit</button>
+              </div>
 
-    <section class="section has-text-centered">
-      
-      <progress hidden id ="makegood" class="pure-material-progress-circular"></progress>
-      <h1 class="is-size-4" id = "this2">Your results will be shown here!</h1>
-    </section>
+
+          </div>
+          </form>
+
+        </div>
+
+        <section class="section has-text-centered">
+
+          <progress hidden id="makegood" class="pure-material-progress-circular"></progress>
+          <h1 class="is-size-4" id="this2"><mark class="has-background-light">Your results will be shown here!</mark>
+          </h1>
+
+        </section>
+
       </section>
     </div>
-  
-  
+
+
   </section>
 
-<section class="section has-background-light">
+
+
+  <section class="section has-background-light">
+
+    <p class="has-text-centered">Abstract of <a href="https://arxiv.org/abs/1907.01985">this paper</a>
+
+      <blockquote cite="https://arxiv.org/abs/1907.01985" class="column has-text-centered">
+        "The goal of research in automatic image popularity assessment (IPA) is to develop computational models that can
+        accurately predict the potential of a social image to go viral on the Internet. Here, we aim to single out the
+        contribution of visual content to image popularity, i.e., intrinsic image popularity. Specifically, we first
+        describe a probabilistic method to generate massive popularity-discriminable image pairs, based on which the
+        first large-scale image database for intrinsic IPA (I2PA) is established. We then develop computational models
+        for I2PA based on deep neural networks, optimizing for ranking consistency with millions of
+        popularity-discriminable image pairs. Experiments on Instagram and other social platforms demonstrate that the
+        optimized model performs favorably against existing methods, exhibits reasonable generalizability on different
+        databases, and even surpasses human-level performance on Instagram. In addition, we conduct a psychophysical
+        experiment to analyze various aspects of human behavior in I2PA."
+
+      </blockquote>
+    </p>
 
 
 
-<blockquote class="column has-text-centered">
-  The goal of research in automatic image popularity assessment (IPA) is to develop computational models that can accurately predict the potential of a social image to go viral on the Internet. Here, we aim to single out the contribution of visual content to image popularity, i.e., intrinsic image popularity. Specifically, we first describe a probabilistic method to generate massive popularity-discriminable image pairs, based on which the first large-scale image database for intrinsic IPA (I2PA) is established. We then develop computational models for I2PA based on deep neural networks, optimizing for ranking consistency with millions of popularity-discriminable image pairs. Experiments on Instagram and other social platforms demonstrate that the optimized model performs favorably against existing methods, exhibits reasonable generalizability on different databases, and even surpasses human-level performance on Instagram. In addition, we conduct a psychophysical experiment to analyze various aspects of human behavior in I2PA.
 
-</blockquote>
-
-
-
-
-</section>
+  </section>
+  <section class="section has-background-white-bis">
+    <p class="has-text-centered">Thanks to <a href="https://github.com/dingkeyan93">@dingkeyan93</a> for the Pytorch
+      model.</p>
+  </section>
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
-<script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
-<script src="https://www.vantajs.com/dist/vanta.fog.min.js"></script>
-<script>
-VANTA.NET({
-el: "#topi",
-mouseControls: true,
-touchControls: true,
-minHeight: 200.00,
-minWidth: 200.00,
-scale: 1.00,
-scaleMobile: 1.00,
-color: 0x8f878a,
-backgroundColor: 0xf8f8f8,
-maxDistance: 4.00
-})
-</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
+  <script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
+  <script src="https://www.vantajs.com/dist/vanta.fog.min.js"></script>
+
 
 </body>
 
