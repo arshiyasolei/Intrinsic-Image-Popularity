@@ -11,13 +11,17 @@ def upload():
 @app.route('/calculate/', methods = ['POST'])  
 def calculate():  
     if request.method == 'POST':  
-        f = request.files['file'] 
-        f = Image.open(f)
-        print(type(f)) 
-        f = popmodel.doit(f)
-        #f.save(f.filename)  
-        resp = jsonify({"rsvp":f} )
-        return resp
+        f = request.files['file']
+        if '.png' not in f.filename and '.jpg' not in f.filename:
+            resp = jsonify({"rsvp":'Wrong file type!'} )
+            return resp
+        else:
+            f = Image.open(f)
+            print(type(f))
+            f = popmodel.doit(f)
+            #f.save(f.filename)
+            resp = jsonify({"rsvp":f} )
+            return resp
   
 if __name__ == '__main__':  
 
