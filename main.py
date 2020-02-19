@@ -17,7 +17,7 @@ def calculate():
     if request.method == 'POST':  
         f = request.files['file']
         print(f.filename)
-        if '.png' not in f.filename and '.jpg' not in f.filename and '.JPG' not in f.filename and '.PNG' not in f.filename:
+        if '.png' not in f.filename and '.jpg' not in f.filename and '.JPG' not in f.filename and '.PNG' not in f.filename and '.jpeg' not in f.filename and '.JPEG' not in f.filename:
             resp = jsonify({"rsvp":"Wrong file type!"} )
             return resp
         else:
