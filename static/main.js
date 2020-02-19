@@ -18,8 +18,9 @@ function submitForm() {
       success: function(data){
         //$(this).addClass("done");
         elem.setAttribute('hidden', 'true');
-        if (String(parseFloat(data["rsvp"]).toPrecision(3)) != 'NaN'){
-        document.getElementById("this2").innerHTML =  "<strong>" + String(parseFloat(data["rsvp"]).toPrecision(3)) + "</strong>";
+        console.log(data["rsvp"])
+        if (data["rsvp"] != "Wrong file type!"){
+        document.getElementById("this2").innerHTML =  "<strong>" + String(data["rsvp"]) +"th percentile!" + "</strong>";
         }
         else{
           document.getElementById("this2").innerHTML =  "<strong>" + String(data["rsvp"]) + "</strong>";
