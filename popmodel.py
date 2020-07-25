@@ -9,6 +9,7 @@ from PIL import Image
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 import os
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+#prepares image for analysis
 def prepare_image(image):
     if image.mode != 'RGB':
         image = image.convert("RGB")
@@ -20,11 +21,14 @@ def prepare_image(image):
     image = image.unsqueeze(0)
     return image.to(device)
 
+#function to predict image ratings
 def predict(image, model):
     image = prepare_image(image)
     with torch.no_grad():
         preds = model(image)
     return preds.item()
+
+#function to train model
 def doit(image):
     model = torchvision.models.resnet50()
     # model.avgpool = nn.AdaptiveAvgPool2d(1) # for any size of the input
